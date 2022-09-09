@@ -5,9 +5,8 @@ project(Pokeverse LANGUAGES CXX VERSION ${PROJECT_VERSION} DESCRIPTION "A pokemo
 find_package(PkgConfig REQUIRED)
 PKG_SEARCH_MODULE(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)
 
-set (CMAKE_CXX_FLAGS "-fpermissive")
-
 set(SOURCES
+    src/sha526.cpp
     src/main.cpp
 )
 
