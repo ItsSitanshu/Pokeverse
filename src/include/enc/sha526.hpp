@@ -31,6 +31,6 @@ void sha_transform(CTX *ctx, unsigned char data[]);
 void sha_init(CTX *ctx);
 void sha_update(CTX *ctx, unsigned char data[], unsigned int len);
 void sha_final(CTX *ctx, unsigned char hash[]);
-std::string SHA256(char* data);
+std::string SHA256(char* data, char* salt_data);
 
 #endif

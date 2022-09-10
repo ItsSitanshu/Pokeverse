@@ -4,7 +4,8 @@
     licence: BSD 3-Clause License
 */
 
-#include "sha526.hpp"
+#include "enc/sha526.hpp"
+#include "enc/seasoning.hpp"
 
 #include "iostream"
 #include "cstring"
@@ -138,14 +139,16 @@ void sha_final(CTX *ctx, unsigned char hash[]) {
 	}
 }
 
-std::string SHA256(char* data) {
-    int str_len = strlen(data);
+std::string SHA256(char* data, char* salt_data) {
+	std::string str(data);
+	const char* data_ = (generate_salt(salt_data) + data).c_str();
+    int str_len = strlen(data_);
 	CTX ctx;
 	unsigned char hash[32];
 	std::string hash_str;
 
 	sha_init(&ctx);
-	sha_update(&ctx, (unsigned char*)data, str_len);
+	sha_update(&ctx, (unsigned char*)data_, str_len);
 	sha_final(&ctx, hash);
 
 	char s[3];
