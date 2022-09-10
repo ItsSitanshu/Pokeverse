@@ -12,6 +12,7 @@
 #include "cstring"
 
 #include "sys/types.h"
+#include "sys/time.h"
 #include "sys/socket.h"
 #include "netinet/in.h"
 #include "arpa/inet.h"
@@ -21,6 +22,11 @@
 int main() {
     int sockfd, connfd;
     unsigned int len;
+
+    // Recv ~
+    char chunk[2000];
+    // Recv ~
+
     struct sockaddr_in servaddr, cli;
    
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -57,20 +63,10 @@ int main() {
         exit(0);
     } else {
         printf("STATUS!: Server accepted client...\n");
+        memset(chunk, 0, 2000);
+        recv(connfd , chunk , 2000 , 0);
+        std::cout << chunk << std::endl;
     }
 
-    char* buff;
-    int n;
-    for (;;) {
-        read(connfd, buff, sizeof(buff));
-        printf("%s\n", buff);
-        write(connfd, buff, sizeof(buff));
-   
-        if (strncmp("exit", buff, 4) == 0) {
-            printf("STATUS!: Exitting...\n");
-            break;
-        }
-    }
-    
     close(sockfd);
 }

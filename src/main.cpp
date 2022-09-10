@@ -40,11 +40,10 @@ int main(int argc, char* argv[]) {
         exit(0);
     } else {
         printf("STATUS!: Connected to the server..\n");
+        const char* connect_msg = ("usr: %s, pwd: %s = %s ", argv[2], argv[1], (SHA256(argv[1], argv[2])).c_str());
+        int connect_msg_len = strlen(connect_msg);
+        send(sockfd, connect_msg, connect_msg_len, 0);
     }
-    char* buff = ("usr: %s, pwd: %s := %s\n", argv[1], argv[2], SHA256(argv[2], argv[1]).c_str());
-    write(sockfd, buff, sizeof(buff));
-    bzero(buff, sizeof(buff));
-    read(sockfd, buff, sizeof(buff));
 
     close(sockfd);
 } 
