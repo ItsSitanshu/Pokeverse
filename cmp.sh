@@ -12,4 +12,6 @@ fi
 
 if [ "$1" == "-d" ]; then
     ./Pokeverse
+elif [ "$1" == "-s" ]; then
+    ./Server
 fi

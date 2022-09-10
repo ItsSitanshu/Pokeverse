@@ -5,13 +5,20 @@ project(Pokeverse LANGUAGES CXX VERSION ${PROJECT_VERSION} DESCRIPTION "A pokemo
 find_package(PkgConfig REQUIRED)
 PKG_SEARCH_MODULE(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)
 
+set(CMAKE_CXX_FLAGS "-fpermissive -ggdb")
+
 set(SOURCES
     src/enc/sha526.cpp
     src/enc/seasoning.cpp
     src/main.cpp
 )
 
+set(S_SOURCES
+    src/server.cpp
+)
+
 add_executable(Pokeverse ${SOURCES})
+add_executable(Server ${S_SOURCES})
 
 target_include_directories(Pokeverse
     PRIVATE src/include
