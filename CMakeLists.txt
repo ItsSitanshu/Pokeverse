@@ -6,7 +6,8 @@ find_package(PkgConfig REQUIRED)
 PKG_SEARCH_MODULE(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)
 
 set(SOURCES
-    src/sha526.cpp
+    src/enc/sha526.cpp
+    src/enc/seasoning.cpp
     src/main.cpp
 )
 
